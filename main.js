@@ -1,41 +1,74 @@
-class Usuario {
-    constructor(nombre, apellido, libros = [], mascotas = []){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.libros = libros;
-        this.mascotas = mascotas
+const { promises: fs } = require('fs')
+
+class Container{
+    constructor(route){
+        this.route = route
     }
-    getFullName(){
-        return(`${this.nombre} ${this.apellido}`)
+    async save(object){
+        const products = await this.getAll()
+        object.id = products.length === 0 ? 0 : object.id = products[products.length - 1].id + 1
+        products.push(object)
+        try {
+            console.log(`El siguiente elemento sera guardado : \n${JSON.stringify(object)}`)
+            await fs.writeFile(this.route, JSON.stringify(products, null, 2))
+            console.log('Guardado exitoso')
+        } catch (error) {
+            console.error('Error de escritura')
+            console.error(error)
+        }
     }
-    addMascota(mascota){
-        this.mascotas.push(mascota);
+    async getById(id){
+        const products = await this.getAll()
+        if(!this.checkLength(products)){
+            return
+        }
+        let product = products.find(element => element.id == id)
+        return product ? product : null
     }
-    countMascotas(){
-        return this.mascotas.length
+    async getAll(){
+        try {
+            let products = await fs.readFile(this.route, 'utf-8')
+            return JSON.parse(products)
+        } catch (error) {
+            console.error('Error de lectura.')
+            console.error(error)
+            return []
+        }
     }
-    addBook(nombre, autor){
-        this.libros.push({nombre : nombre, autor : autor});
+    async deleteById(id){
+        const products = await this.getAll()
+        if(!this.checkLength(products)){
+            return
+        }
+        const product = products.find(element => element.id == id)
+        const newProducts = products.filter(element => element != product)
+        console.log(newProducts)
+        try {
+            console.log(`El siguiente elemento sera eliminado : \n${JSON.stringify(product)}`)
+            await fs.writeFile(this.route, JSON.stringify(newProducts, null, 2))
+            console.log(`Cambios guardados`)
+        } catch (error) {
+            console.error('Error de escritura.')
+            console.error(error)
+        }
     }
-    getBookNames(){
-        let bookName = [];
-        this.libros.forEach(book => bookName.push(book.nombre));
-        return bookName
+    async deleteAll(){
+        try {
+            console.log('Se procedera a borrar todos los elementos ...')
+            await fs.writeFile(this.route, "")
+            console.log('Elementos eliminados con exito.')
+        } catch (error) {
+            console.error('Error de escritura.')
+            console.error(error)
+        }
+    }
+    checkLength(arr){
+        if (arr.length === 0){
+            console.error('El array esta vacio')
+            return false
+        }
+        return true
     }
 }
 
-const nuevoUsuario = new Usuario('Maximiiliano', 'Cabrera')
-console.warn('Nuevo usuario creado')
-console.log(nuevoUsuario)
-nuevoUsuario.addMascota('Salem')
-nuevoUsuario.addMascota('Olga')
-nuevoUsuario.addMascota('Ryuk')
-console.warn('Nuevas mascotas agregadas')
-console.log(nuevoUsuario)
-console.log(`Cantidad de mascotas : ${nuevoUsuario.countMascotas()}`)
-nuevoUsuario.addBook('Dantes Inferno', 'Dante Alighieri')
-nuevoUsuario.addBook('The Green Mile', 'Stephen King')
-nuevoUsuario.addBook('El Codigo Da Vinci', 'Dan Brown')
-console.warn('Nuevos Libros Agregados')
-console.log(nuevoUsuario)
-console.log(`Nombres de Libros agregados : ${nuevoUsuario.getBookNames()}`)
+module.exports = Container;
