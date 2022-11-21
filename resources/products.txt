@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Remera",
+    "price": 1350,
+    "src": "https:alala1321"
+  },
+  {
+    "id": 2,
+    "name": "Chaqueta cuero",
+    "price": 3990,
+    "src": "https:alala1321"
+  },
+  {
+    "id": 3,
+    "name": "Pantalón",
+    "price": 2350,
+    "src": "https:alala1321"
+  },
+  {
+    "id": 4,
+    "name": "Pantuflas",
+    "price": 450,
+    "src": "Pantuflas4"
+  }
+]
