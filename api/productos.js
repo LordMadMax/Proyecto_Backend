@@ -55,7 +55,7 @@ class Container{
             let products = await fs.readFile(this.route, 'utf-8')
             return JSON.parse(products)
         } catch (error) {
-            console.error('Error de lectura')
+            console.error('Error de lectura.')
             console.error(error)
             return []
         }
@@ -75,7 +75,7 @@ class Container{
             console.log(`Cambios guardados`)
             return product
         } catch (error) {
-            console.error('Error de escritura')
+            console.error('Error de escritura.')
             console.error(error)
         }
     }
@@ -90,14 +90,14 @@ class Container{
     checkId(product, arr){
         arr.forEach(element => {
             if(element.id == product.id){
-                console.warn('El id del elemento ya existe, se le asignara uno nuevo')
+                console.warn('El id del elemento ya existe, se le asignara uno nuevo.')
                 return this.newId(product, arr)
             } 
         });
             return product.id
     }
     newId(product, arr){
-        arr.sort((a, b) => {return a - b})
+        arr.sort((a, b) => {return a - b}) 
         product.id = parseInt(arr[arr.length - 1].id) + 1 
         console.log(`Nuevo id del producto : ${product.id}`)
         return product.id

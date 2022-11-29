@@ -1,26 +1,38 @@
 [
   {
     "id": 1,
-    "name": "Remera",
-    "price": 1350,
-    "src": "https:alala1321"
+    "name": "Ración Perro 10k",
+    "price": 750,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971847/Racion_Perro_knx16n.jpg"
   },
   {
     "id": 2,
-    "name": "Chaqueta cuero",
-    "price": 3990,
-    "src": "https:alala1321"
+    "name": "Ración Perro 25k",
+    "price": 1490,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971847/Racion_Perro_knx16n.jpg"
   },
   {
     "id": 3,
-    "name": "Pantalón",
-    "price": 2350,
-    "src": "https:alala1321"
+    "name": "Ración Gato 10k",
+    "price": 750,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971770/Racion_Gato_of2f1a.jpg"
   },
   {
     "id": 4,
-    "name": "Pantuflas",
-    "price": 450,
-    "src": "Pantuflas4"
+    "name": "Ración Gato 25k",
+    "price": 1490,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971770/Racion_Gato_of2f1a.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Arena Gato 10k",
+    "price": 750,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971733/Arena_Gatos_asfhka.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Arena Gato 25k",
+    "price": 1490,
+    "src": "https://res.cloudinary.com/dy6g2gbzf/image/upload/v1664971733/Arena_Gatos_asfhka.jpg"
   }
 ]
