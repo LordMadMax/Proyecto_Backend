@@ -8,6 +8,7 @@ class Container{
         const productos = await this.getAll()
         const index = productos.map(element => element.id).indexOf(object.id) 
         if(index >= 0){
+            
             const oldProduct = productos[index]
             object.id = productos[index].id 
             productos[index] = object
